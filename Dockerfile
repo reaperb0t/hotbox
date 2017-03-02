@@ -21,7 +21,8 @@ RUN updatedb
 # Setup IoT Tools
 # Follow the firmware-analysis-toolkit readme on how to properly setup
 # configurations for firmdayne and firmware-mod-kit
-RUN sudo git clone --recursive https://github.com/attify/firmware-analysis-toolkit.git /root//firmware-analysis-toolkit/
+RUN git clone --recursive https://github.com/attify/firmware-analysis-toolkit.git /root/firmware-analysis-toolkit/
+RUN python /root/firmware-analysis-toolkit/setup.py install
 RUN apt-get install -y busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy
 #RUN git clone --recursive https://github.com/firmadyne/firmadyne.git /root/firmware-analysis-toolkit/firmadyne
 RUN git clone --recursive https://github.com/zcutlip/nvram-faker.git /root/firmware-analysis-toolkit/nvram-faker
