@@ -10,17 +10,15 @@ FROM kalilinux/kali-linux-docker
 # Referenced: https://github.com/attify/firmware-analysis-toolkit
 
 # Setup Kali and FAT Tools
-RUN wget -q -O - https://archive.kali.org/archive-key.asc  | apt-key add
 RUN apt-get update && apt-get install -y apt-transport-https
 RUN cd /tmp && mkdir docker_tmp && cd docker_tmp
 RUN cd /root/ 
 RUN apt-get install -y apt bc gettext-base man-db fontconfig powerline
-RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb firefox
+RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb iceweasel
 RUN updatedb
 
 # Git Clone Additional Tools
 RUN git clone --recursive https://github.com/attify/firmware-analysis-toolkit /root/firmware-analysis-toolkit/
-RUN git clone --recursive https://github.com/firmadyne/firmadyne.git /root/firmware-analysis-toolkit/firmadyne
 RUN git clone --recursive https://github.com/zcutlip/nvram-faker.git /root/firmware-analysis-toolkit/nvram-faker
 RUN git clone --recursive https://github.com/JonathanSalwan/ROPgadget.git /root/firmware-analysis-toolkit/ROPgadget
 RUN git clone --recursive https://github.com/hugsy/gef /root/firmware-analysis-toolkit/gef
@@ -74,14 +72,14 @@ RUN git clone --recursive https://github.com/f4exb/sdrangel /root/sdrangel
 RUN git clone --recursive https://github.com/h3xstream/burp-retire-js /root/burp-retire-js
 
 #Install and Configure Additional Tools 
-RUN chmod +x /root/firmware-analysis-toolkit/fat.py /root/firmware-analysis-toolkit/reset.sh
-RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
-RUN pip3 install capstone unicorn keystone-engine
-RUN mkdir ~/.vnc
+#RUN chmod +x /root/firmware-analysis-toolkit/fat.py /root/firmware-analysis-toolkit/reset.sh
+#RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
+RUN pip install capstone unicorn keystone-engine
+#RUN mkdir ~/.vnc
 # Setup a temporary VNC password
-RUN     x11vnc -storepasswd password ~/.vnc/passwd
+#RUN     x11vnc -storepasswd password ~/.vnc/passwd
 # Autostart firefox (might not be the best way to do it, but it does the trick)
-RUN     bash -c 'echo "firefox" >> /.bashrc'
+#RUN     bash -c 'echo "firefox" >> /.bashrc'
 # Example of running VNC from creack/firefox-vnc: docker run -p 5900 -e HOME=/ creack/firefox-vnc x11vnc -forever -usepw -create
 # Define default command if required, eg:
 # CMD ["nginx -g 'daemon off;'"]
