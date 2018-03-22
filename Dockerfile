@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y apt-transport-https
 RUN cd /tmp && mkdir docker_tmp && cd docker_tmp
 RUN cd /root/ 
 RUN apt-get install -y apt bc gettext-base man-db fontconfig powerline
-RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb iceweasel
+RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb iceweasel mitmproxy
 RUN updatedb
 
 # Git Clone Additional Tools
@@ -72,18 +72,17 @@ RUN git clone --recursive https://github.com/f4exb/sdrangel /root/sdrangel
 RUN git clone --recursive https://github.com/h3xstream/burp-retire-js /root/burp-retire-js
 
 #Install and Configure Additional Tools 
-#RUN chmod +x /root/firmware-analysis-toolkit/fat.py /root/firmware-analysis-toolkit/reset.sh
-#RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
-RUN pip install capstone unicorn keystone-engine
-#RUN mkdir ~/.vnc
-# Setup a temporary VNC password
-#RUN     x11vnc -storepasswd password ~/.vnc/passwd
-# Autostart firefox (might not be the best way to do it, but it does the trick)
-#RUN     bash -c 'echo "firefox" >> /.bashrc'
-# Example of running VNC from creack/firefox-vnc: docker run -p 5900 -e HOME=/ creack/firefox-vnc x11vnc -forever -usepw -create
+RUN /root/firmware-analysis-toolkit/binwalk/deps.sh
+RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
+RUN pip install capstone unicorn keystone-engine pexpect
+RUN chmod +x /root/firmware-analysis-toolkit/fat.py
+RUN chmod +x /root/firmware-analysis-toolkit/reset.py
+RUN sed -i -e 's/\/home\/vagrant\/firmadyne\//\/root\/firmware-analysis-toolkit\/firmadyne\//g' /root/firmware-analysis-toolkit/firmadyne/firmadyne.config
+
+
 # Define default command if required, eg:
 # CMD ["nginx -g 'daemon off;'"]
-
+CMD cd /root/
 # Ports to be exposed
 EXPOSE 53
 EXPOSE 80
