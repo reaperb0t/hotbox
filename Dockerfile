@@ -78,8 +78,8 @@ RUN git clone --recursive https://github.com/f4exb/sdrangel /root/sdrangel
 RUN git clone --recursive https://github.com/h3xstream/burp-retire-js /root/burp-retire-js
 
 #Install and Configure Additional Tools 
-RUN /root/firmware-analysis-toolkit/binwalk/deps.sh
-RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
+RUN /root/firmware-analysis-toolkit/binwalk/deps.sh --yes
+#BROKE: RUN python /root/firmware-analysis-toolkit/binwalk/setup.py install
 RUN pip install capstone unicorn keystone-engine pexpect
 RUN chmod +x /root/firmware-analysis-toolkit/fat.py
 RUN chmod +x /root/firmware-analysis-toolkit/reset.py
