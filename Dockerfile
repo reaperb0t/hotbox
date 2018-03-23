@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y apt-transport-https
 RUN cd /tmp && mkdir docker_tmp && cd docker_tmp
 RUN cd /root/ 
 RUN apt-get install -y apt bc gettext-base man-db fontconfig powerline
-RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb iceweasel mitmproxy binwalk
+RUN apt-get install -y nmap hydra john tcpdump metasploit-framework sqlmap fierce dnsrecon dirb python-pip git nginx sslscan dnsenum dnsmap p0f joomscan davtest wfuzz sipvicious sslstrip gpp-decrypt patator wordlists enum4linux onesixtyone apktool dex2jar smali ridenum jad webshells snmpcheck dnsutils rsh-client gdb git exploitdb vim gnuradio gqrx-sdr hackrf tree locate default-jre busybox-static fakeroot kpartx netcat-openbsd python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential zlib1g-dev liblzma-dev python-magic python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev python-pip python-scapy gdb-multiarch x11vnc xvfb iceweasel mitmproxy binwalk ltrace strace
 RUN updatedb
 
 # Git Clone Additional Tools
@@ -76,6 +76,13 @@ RUN git clone --recursive https://github.com/hathcox/py-hackrf /root/py-hackrf
 RUN git clone --recursive https://github.com/realraum/hackrf-dvb-t /root/hackrf-dvb-t
 RUN git clone --recursive https://github.com/f4exb/sdrangel /root/sdrangel
 RUN git clone --recursive https://github.com/h3xstream/burp-retire-js /root/burp-retire-js
+RUN git clone --recursive https://github.com/mirrorer/afl /root/afl
+RUN git clone --recursive https://github.com/rmadair/fuzzer /root/rmadair
+RUN git clone --recursive https://github.com/samhocevar/zzuf /root/zzuf
+RUN git clone --recursive https://github.com/aoh/radamsa /root/radamsa
+RUN git clone --recursive https://github.com/binspector/binspector /root/binspector
+RUN git clone --recursive https://github.com/renatahodovan/grammarinator /root/grammarinator
+RUN git clone --recursive https://github.com/jtpereyda/boofuzz /root/boofuzz
 
 #Install and Configure Additional Tools 
 RUN /root/firmware-analysis-toolkit/binwalk/deps.sh --yes
