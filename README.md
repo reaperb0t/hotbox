@@ -2,10 +2,10 @@
 
 IoT Exploitation and Analysis (hardware hacking) tools all in one convenient docker. Originally at cybersyndicates/hot-toolkit
 
-https://github.com/reaperb0t/hotbox/blob/master/Dockerfile
-https://homelandofthings.org
-http://blog.obscuritylabs.com/
-http://cybersyndicates.org
+* https://hub.docker.com/r/hotbox/hotbox/
+* https://homelandofthings.org
+* http://blog.obscuritylabs.com/
+* http://cybersyndicates.org
 
 New version AO 03/19/2018 (8.62GB)
 
