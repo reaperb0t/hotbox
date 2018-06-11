@@ -11,9 +11,9 @@ New version AO 03/19/2018 (8.62GB)
 
 #Tools
 
-afl
-apktool
-attify-badge
+-afl
+-apktool
+-attify-badge
 Attify-Zigbee-Framework
 baudrate
 binspector
