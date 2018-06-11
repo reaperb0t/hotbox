@@ -148,14 +148,14 @@ New version AO 03/19/2018 (8.62GB)
 135. zzuf
 
 #Run with access to a physical device:
-docker run -it --device=/dev/ttyUSB0 hotbox/hotbox bash
+* docker run -it --device=/dev/ttyUSB0 hotbox/hotbox bash
 OR
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb hotbox/hotbox bash
+* docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb hotbox/hotbox bash
 
 #Hardware tools confirmed working:
--HackRF (#hack_info)
+* HackRF (#hack_info)
 
 #Exposed Ports
-EXPOSED 53, 80, 443, 5900, 8000, 8080, 8443
+* EXPOSED 53, 80, 443, 5900, 8000, 8080, 8443
 
 Note: ZAP Java dependencies are a PITA, pull a separate docker: "docker pull owasp/zap2docker-stable"
