@@ -149,7 +149,7 @@ New version AO 03/19/2018 (8.62GB)
 
 # Run with access to a physical device:
 * docker run -it --device=/dev/ttyUSB0 hotbox/hotbox bash
-OR
+* OR
 * docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb hotbox/hotbox bash
 
 # Hardware tools confirmed working:
